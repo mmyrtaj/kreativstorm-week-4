@@ -1,6 +1,6 @@
-# Kreativstorm Week 3 Assignment — JavaScript Part 1
+# Kreativstorm Week 4 Assignment — JavaScript Part 2
 
-[View Live Demo]()
+[View Live Demo](https://mmyrtaj.github.io/kreativstorm-week-4/)
 
 This is a JavaScript project of a fully functional calculator!
 
