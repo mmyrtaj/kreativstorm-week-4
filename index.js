@@ -52,7 +52,8 @@ const initialize = () =>{
             });
         }else if(button.classList.contains('decimal')){
             button.addEventListener('click', () => {
-                console.log("Clicked .");
+                addFloatingPoint();
+                updateDisplay();
             });
         }else if(button.id == 'btn-equal'){
             button.addEventListener('click', () => {
@@ -64,7 +65,7 @@ const initialize = () =>{
 
 const operand = (num) =>{
     if(num1 == null){
-        if(displayValue == 0){
+        if(displayValue === 0){
             displayValue = num;
         }else{
             displayValue += num;
@@ -80,4 +81,11 @@ const operand = (num) =>{
 
 const backspace = (numInString) => numInString.slice(0, -1);
 
+const addFloatingPoint = () => {
+    if(displayValue === 0){
+        displayValue += '.';
+    }else if(!displayValue.includes('.')) {
+        displayValue += '.';
+    }
+}
 initialize();
