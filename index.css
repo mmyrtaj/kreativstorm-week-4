@@ -1,8 +1,9 @@
 .our-calc {
     width: 450px;
     height: 600px;
-    margin: 10rem auto;
+    margin: 1rem auto;
     border: 10px solid rgb(27, 24, 24);
+    overflow: hidden;
 }
 
 #display {
