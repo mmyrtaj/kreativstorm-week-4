@@ -87,7 +87,7 @@ const operand = (num) => {
         if (displayValue === '0' || displayValue === 0) {
             displayValue = num;
         } else{
-            displayValue += num;
+            displayValue += displayValue.length > 10 ? '' : num;
         }
     }
 };
