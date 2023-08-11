@@ -33,11 +33,14 @@ const handleOperandClick = e => {
 };
 
 const handleOperatorClick = e => {
+    document.querySelectorAll('.active').forEach(element => element.classList.remove('active'));
+    e.target.classList.add('active');
     operatorInit(e.target.innerText);
     updateDisplay();
 };
 
 const handleAcClick = () => {
+    document.querySelectorAll('.active').forEach(element => element.classList.remove('active'));
     allClear();
 };
 
@@ -56,6 +59,7 @@ const handleDecimalClick = () => {
 };
 
 const handleEqualClick = () => {
+    document.querySelectorAll('.active').forEach(element => element.classList.remove('active'));
     equals();
     updateDisplay();
 };
