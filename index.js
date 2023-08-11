@@ -3,8 +3,7 @@ const display = document.getElementById('display'),
 let displayValue = 0,
     num1 = null,
     num2 = null,
-    operator1 = null,
-    operator2 = null;
+    operator = null;
 
 const add = (num1, num2) => num1 + num2;
 
@@ -13,7 +12,7 @@ const substract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 
 const divide = (num1, num2) => {
-    if (num2 === 0) {
+    if (num2 == 0) {
         return 'NOT ALLOWED!';
     } else {
         return num1 / num2;
@@ -35,11 +34,12 @@ const initialize = () => {
             });
         } else if(button.classList.contains('operator')) {
             button.addEventListener('click', () => {
-                console.log("Clicked operator");
+                operatorInit(button);
+                updateDisplay();
             });
         } else if (button.id == 'btn-ac') {
             button.addEventListener('click', () => {
-                console.log("Clicked AC");
+                allClear();
             });
         } else if (button.id == 'backspace') {
             button.addEventListener('click', () => {
@@ -57,36 +57,89 @@ const initialize = () => {
             });
         } else if (button.id == 'btn-equal') {
             button.addEventListener('click', () => {
-                console.log("Clicked =");
+                equals();
+                updateDisplay();
             });
         }
     })
-}
+};
 
-const operand = (num) =>{
+const operand = (num) => {
     if (num1 == null) {
-        if (displayValue === 0) {
+        if (displayValue === 0 || displayValue === '0') {
             displayValue = num;
         } else {
             displayValue += num;
         }
     } else {
-        if (displayValue === firstOperand || displayValue === 0) {
+        if (displayValue === '0' || displayValue === 0) {
             displayValue = num;
         } else{
             displayValue += num;
         }
     }
-} ;
+};
 
 const backspace = (numInString) => numInString.slice(0, -1);
 
 const addFloatingPoint = () => {
-    if (displayValue === 0) {
+    if (displayValue == 0) {
         displayValue += '.';
     } else if (!displayValue.includes('.')) {
         displayValue += '.';
     }
-}
+};
+
+const operationDefiner = (btnClass) =>{
+    switch (true) {
+        case btnClass.contains('btn-divide'):
+            return divide
+        case btnClass.contains('btn-multiply'):
+            return multiply
+        case btnClass.contains('btn-minus'):
+            return substract
+        case btnClass.contains('btn-plus'):
+            return add
+    }
+};
+
+const operatorInit = (button) => {
+    if (operator === null) {
+        operator = operationDefiner(button.classList);
+        num1 = parseFloat(displayValue);
+        displayValue = 0;
+    } else {
+        num2 = parseFloat(displayValue);
+        num1 = operate(operator, num1, num2);
+        displayValue = 0;
+        if (num1 == 'NOT ALLOWED!') handleDivByZero();
+        operator = operationDefiner(button.classList);
+    }
+};
+const equals = () => {
+    if (operator != null) {
+        num2 = parseFloat(displayValue);
+        num1 = operate(operator, num1, num2);
+        displayValue = "" + num1;
+        operator = null;
+        if (num1 == 'NOT ALLOWED!') handleDivByZero();
+    }
+};
+
+const handleDivByZero = () => {
+    displayValue = 'NOT ALLOWED!';
+    updateDisplay();   
+    setTimeout(() =>{
+        allClear();
+    }, 2000);
+};
+
+const allClear = () => {
+    displayValue = 0;
+    num1 = null;
+    num2 = null;
+    operator = null;
+    updateDisplay();
+};
 
 initialize();
