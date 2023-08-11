@@ -4,7 +4,8 @@ let displayValue = 0,
     num1 = null,
     num2 = null,
     operator = null,
-    computed = false;
+    computed = false,
+    operating;
 
 const add = (num1, num2) => num1 + num2;
 
@@ -66,9 +67,10 @@ const initialize = () => {
 };
 
 const operand = (num) => {
-    if(computed === true){
+    if(computed === true || operating === true){
         displayValue = num;
         computed = false;
+        operating = false;
     } else {
         if (displayValue === '0' || displayValue === 0) {
             displayValue = num;
@@ -118,7 +120,8 @@ const operatorInit = (button) => {
     } else {
         num2 = parseFloat(displayValue);
         num1 = operate(operator, num1, num2);
-        displayValue = 0;
+        displayValue = num1;
+        operating = true;
         if (num1 == 'NOT ALLOWED!') handleDivByZero();
         operator = operationDefiner(button.classList);
     }
