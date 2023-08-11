@@ -91,7 +91,7 @@ const operand = (num) => {
         if (displayValue === '0' || displayValue === 0) {
             displayValue = num;
         } else{
-            displayValue += displayValue.length > 10 ? '' : num;
+            displayValue += displayValue.length > 16 ? '' : num;
         }
     }
 };
@@ -106,9 +106,7 @@ const addFloatingPoint = () => {
         displayValue = '0.';
         computed = false;
     } else {
-        if (displayValue == 0) {
-            displayValue += '.';
-        } else if (!displayValue.includes('.')) {
+        if (!displayValue.includes('.')) {
             displayValue += '.';
         }
     }
