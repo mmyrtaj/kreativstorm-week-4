@@ -27,41 +27,53 @@ const updateDisplay = () => {
     display.innerText = displayValue;
 };
 
+const handleOperandClick = e => {
+    operand(e.target.innerText);
+    updateDisplay();
+};
+
+const handleOperatorClick = e => {
+    operatorInit(e.target.innerText);
+    updateDisplay();
+};
+
+const handleAcClick = () => {
+    allClear();
+};
+
+const handleBackspaceClick = () => {
+    if (displayValue.toString().length == 1) {
+        displayValue = 0;
+    } else {
+        displayValue = backspace(displayValue);
+    }
+    updateDisplay();
+};
+
+const handleDecimalClick = () => {
+    addFloatingPoint();
+    updateDisplay();
+};
+
+const handleEqualClick = () => {
+    equals();
+    updateDisplay();
+};
+
 const initialize = () => {
     buttons.forEach((button) => {
         if (button.classList.contains('operand')) {
-            button.addEventListener('click', () => {
-                operand(button.innerText);
-                updateDisplay();
-            });
+            button.addEventListener('click', handleOperandClick);
         } else if(button.classList.contains('operator')) {
-            button.addEventListener('click', () => {
-                operatorInit(button);
-                updateDisplay();
-            });
+            button.addEventListener('click', handleOperatorClick);
         } else if (button.id == 'btn-ac') {
-            button.addEventListener('click', () => {
-                allClear();
-            });
+            button.addEventListener('click', handleAcClick);
         } else if (button.id == 'backspace') {
-            button.addEventListener('click', () => {
-                if (displayValue.toString().length == 1) {
-                    displayValue = 0;
-                } else {
-                    displayValue = backspace(displayValue);
-                }
-                updateDisplay();
-            });
+            button.addEventListener('click', handleBackspaceClick);
          } else if (button.classList.contains('decimal')) {
-            button.addEventListener('click', () => {
-                addFloatingPoint();
-                updateDisplay();
-            });
+            button.addEventListener('click', handleDecimalClick);
         } else if (button.id == 'btn-equal') {
-            button.addEventListener('click', () => {
-                equals();
-                updateDisplay();
-            });
+            button.addEventListener('click', handleEqualClick);
         }
     })
 };
@@ -98,23 +110,23 @@ const addFloatingPoint = () => {
     }
 };
 
-const operationDefiner = (btnClass) =>{
+const operationDefiner = operatorText =>{
     computed = false;
-    switch (true) {
-        case btnClass.contains('btn-divide'):
+    switch (operatorText) {
+        case '/':
             return divide
-        case btnClass.contains('btn-multiply'):
+        case '\u00D7':
             return multiply
-        case btnClass.contains('btn-minus'):
+        case '\u2212':
             return substract
-        case btnClass.contains('btn-plus'):
+        case '+':
             return add
     }
 };
 
-const operatorInit = (button) => {
+const operatorInit = operatorText => {
     if (operator === null) {
-        operator = operationDefiner(button.classList);
+        operator = operationDefiner(operatorText);
         num1 = parseFloat(displayValue);
         displayValue = 0;
     } else {
@@ -123,7 +135,7 @@ const operatorInit = (button) => {
         displayValue = num1;
         operating = true;
         if (num1 == 'NOT ALLOWED!') handleDivByZero();
-        operator = operationDefiner(button.classList);
+        operator = operationDefiner(operatorText);
     }
 };
 const equals = () => {
