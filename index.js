@@ -3,7 +3,8 @@ const display = document.getElementById('display'),
 let displayValue = 0,
     num1 = null,
     num2 = null,
-    operator = null;
+    operator = null,
+    computed = false;
 
 const add = (num1, num2) => num1 + num2;
 
@@ -65,24 +66,35 @@ const initialize = () => {
 };
 
 const operand = (num) => {
-    if (displayValue === '0' || displayValue === 0) {
+    if(computed === true){
         displayValue = num;
-    } else{
-        displayValue += num;
+        computed = false;
+    } else {
+        if (displayValue === '0' || displayValue === 0) {
+            displayValue = num;
+        } else{
+            displayValue += num;
+        }
     }
 };
 
 const backspace = (numInString) => numInString.slice(0, -1);
 
 const addFloatingPoint = () => {
-    if (displayValue == 0) {
-        displayValue += '.';
-    } else if (!displayValue.includes('.')) {
-        displayValue += '.';
+    if(computed === true){
+        displayValue = '0.';
+        computed = false;
+    } else {
+        if (displayValue == 0) {
+            displayValue += '.';
+        } else if (!displayValue.includes('.')) {
+            displayValue += '.';
+        }
     }
 };
 
 const operationDefiner = (btnClass) =>{
+    computed = false;
     switch (true) {
         case btnClass.contains('btn-divide'):
             return divide
@@ -114,6 +126,7 @@ const equals = () => {
         num1 = operate(operator, num1, num2);
         displayValue = "" + num1;
         operator = null;
+        computed = true;
         if (num1 == 'NOT ALLOWED!') handleDivByZero();
     }
 };
@@ -131,6 +144,7 @@ const allClear = () => {
     num1 = null;
     num2 = null;
     operator = null;
+    computed = false;
     updateDisplay();
 };
 
