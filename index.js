@@ -65,18 +65,10 @@ const initialize = () => {
 };
 
 const operand = (num) => {
-    if (num1 == null) {
-        if (displayValue === 0 || displayValue === '0') {
-            displayValue = num;
-        } else {
-            displayValue += num;
-        }
-    } else {
-        if (displayValue === '0' || displayValue === 0) {
-            displayValue = num;
-        } else{
-            displayValue += num;
-        }
+    if (displayValue === '0' || displayValue === 0) {
+        displayValue = num;
+    } else{
+        displayValue += num;
     }
 };
 
@@ -130,7 +122,7 @@ const handleDivByZero = () => {
     displayValue = 'NOT ALLOWED!';
     updateDisplay();   
     setTimeout(() =>{
-        allClear();
+        allClear(); 
     }, 2000);
 };
 
