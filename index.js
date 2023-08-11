@@ -78,7 +78,10 @@ const operand = (num) => {
     }
 };
 
-const backspace = (numInString) => numInString.slice(0, -1);
+const backspace = (numInString) => {
+    computed = false;
+    return numInString.slice(0, -1);
+}
 
 const addFloatingPoint = () => {
     if(computed === true){
