@@ -129,11 +129,11 @@ const operatorInit = operatorText => {
     if (operator === null) {
         operator = operationDefiner(operatorText);
         num1 = parseFloat(displayValue);
-        displayValue = 0;
+        displayValue = '0';
     } else {
         num2 = parseFloat(displayValue);
         num1 = operate(operator, num1, num2);
-        displayValue = num1;
+        displayValue = "" + num1;
         operating = true;
         if (num1 == 'NOT ALLOWED!') handleDivByZero();
         operator = operationDefiner(operatorText);
