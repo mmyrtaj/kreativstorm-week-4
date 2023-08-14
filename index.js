@@ -1,12 +1,12 @@
 const display = document.getElementById('display'),
       buttons = document.querySelectorAll('button');
 
-    let displayValue = 0,
+let displayValue = '0',
     num1 = null,
     num2 = null,
     operator = null,
     computed = false,
-    operating;
+    operating = false;
 
 const add = (num1, num2) => num1 + num2;
 
@@ -47,7 +47,7 @@ const handleAcClick = () => {
 
 const handleBackspaceClick = () => {
     if (displayValue.toString().length == 1) {
-        displayValue = 0;
+        displayValue = '0';
     } else {
         displayValue = backspace(displayValue);
     }
@@ -66,7 +66,6 @@ const handleEqualClick = () => {
 };
 
 const initialize = () => {
-    
     buttons.forEach((button) => {
         if (button.classList.contains('operand')) {
             button.addEventListener('click', handleOperandClick);
@@ -80,66 +79,6 @@ const initialize = () => {
             button.addEventListener('click', handleDecimalClick);
         } else if (button.id == 'btn-equal') {
             button.addEventListener('click', handleEqualClick);
-        }
-    })
-    document.addEventListener("keydown", (event) => {
-        if (event.defaultPrevented) {
-            return;
-          }
-        switch (event.key) {
-        case "1":
-            document.getElementsByClassName.contains('btn-one').click();
-            break;
-        case "2":
-            document.getElementsByClassName.contains('btn-two').click();
-            break;
-        case "3":
-            document.getElementsByClassName.contains('btn-three').click();
-            break;
-        case "4":
-            document.getElementsByClassName.contains('btn-four').click();
-            break;
-        case "5":
-            document.getElementsByClassName.contains('btn-five').click();
-            break;
-        case "6":
-            document.getElementsByClassName.contains('btn-six').click();
-            break;
-        case "7":
-            document.getElementsByClassName.contains('btn-seven').click();
-            break;
-        case "8":
-            document.getElementsByClassName.contains('btn-eight').click();
-            break;
-        case "9":
-            document.getElementsByClassName.contains('btn-nine').click();
-            break;
-        case "0":
-            document.getElementsByClassName.contains('btn-zero').click();
-            break;
-        case "Backspace":
-            document.getElementsByClassName.contains('backspace').click();
-            break;
-        case "Enter":
-            document.getElementsByClassName.contains('btn-equal').click();
-            break;
-        case ".":
-            document.getElementsByClassName.contains('decimal').click();
-            break;
-        case "/":
-            document.getElementsByClassName.contains('btn-divide').click();
-            break;
-        case "*":
-            document.getElementsByClassName.contains('btn-multiply').click();
-            break;
-        case "-":
-            document.getElementsByClassName.contains('btn-minus').click();
-            break;
-        case "+":
-            document.getElementsByClassName.contains('btn-plus').click();
-            break;
-        default:
-            return window.alert('Improper Key!');
         }
     })
 };
@@ -168,9 +107,7 @@ const addFloatingPoint = () => {
         displayValue = '0.';
         computed = false;
     } else {
-        if (!displayValue.includes('.')) {
-            displayValue += '.';
-        }
+        if (!displayValue.includes('.')) displayValue += '.';
     }
 };
 
@@ -218,16 +155,76 @@ const handleDivByZero = () => {
     updateDisplay();   
     setTimeout(() =>{
         allClear(); 
-    }, 2000);
+    }, 1000);
 };
 
 const allClear = () => {
-    displayValue = 0;
+    displayValue = '0';
     num1 = null;
     num2 = null;
     operator = null;
     computed = false;
+    operating = false;
     updateDisplay();
 };
 
 initialize();
+
+document.addEventListener("keydown", (e) => {
+    switch (e.key) {
+    case "Delete":
+        buttons[0].click(); 
+        break;
+    case "Backspace":
+        buttons[1].click();
+        break;
+    case "1":
+        buttons[2].click(); 
+        break;
+    case "2":
+        buttons[3].click(); 
+        break;
+    case "3":
+        buttons[4].click(); 
+        break;
+    case "4":
+        buttons[5].click(); 
+        break;
+    case "5":
+        buttons[6].click(); 
+        break;
+    case "6":
+        buttons[7].click(); 
+        break;
+    case "7":
+        buttons[8].click(); 
+        break;
+    case "8":
+        buttons[9].click(); 
+        break;
+    case "9":
+        buttons[10].click(); 
+        break;
+    case "0":
+        buttons[11].click(); 
+        break;
+    case ".":
+        buttons[12].click(); 
+        break;
+    case "/":
+        buttons[13].click(); 
+        break;
+    case "*":
+        buttons[14].click(); 
+        break;
+    case "-":
+        buttons[15].click(); 
+        break;
+    case "+":
+        buttons[16].click(); 
+        break;
+    case "Enter":
+        buttons[17].click(); 
+        break;
+    }
+})

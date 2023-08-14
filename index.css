@@ -1,3 +1,9 @@
+body{
+    background-color: rgb(226, 222, 185);
+    margin:0;
+    padding:0;
+}
+
 .our-calc {
     width: 450px;
     height: 600px;
@@ -12,8 +18,9 @@
     background-color: gray;
     text-align: right;
     border: 5px solid black;
-    font-size: 2rem;
+    font-size: 2.3rem;
     margin-right: 5px;
+    vertical-align: middle;
 }
 
 .keyboard {
@@ -31,6 +38,7 @@
 
 .btn {
     border-radius: 5px;
+    font-size: 2rem;
 }
 
 button:hover {
@@ -42,12 +50,14 @@ button:hover {
     grid-area: AC;
     background-color: skyblue;
     border-radius: 5px;
+    font-size: 1.5rem;
 }
 
 #backspace {
     grid-area: Backspace;
     background-color: skyblue;
     border-radius: 5px;
+    font-size: 1.5rem;
 }
 
 .btn-divide {
@@ -114,6 +124,7 @@ button:hover {
 #btn-equal {
     grid-area: equal;
     background-color: rgb(236, 130, 53);
+    font-size: 2rem;
 }
 .btn-zero {
     grid-area: zero;
