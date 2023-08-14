@@ -103,9 +103,10 @@ const backspace = (numInString) => {
 }
 
 const addFloatingPoint = () => {
-    if(computed === true){
+    if(computed === true || operating === true){
         displayValue = '0.';
         computed = false;
+        operating = false;
     } else {
         if (!displayValue.includes('.')) displayValue += '.';
     }
