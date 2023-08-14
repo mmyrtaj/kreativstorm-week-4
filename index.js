@@ -1,6 +1,7 @@
 const display = document.getElementById('display'),
       buttons = document.querySelectorAll('button');
-let displayValue = 0,
+
+    let displayValue = 0,
     num1 = null,
     num2 = null,
     operator = null,
@@ -65,6 +66,7 @@ const handleEqualClick = () => {
 };
 
 const initialize = () => {
+    
     buttons.forEach((button) => {
         if (button.classList.contains('operand')) {
             button.addEventListener('click', handleOperandClick);
@@ -78,6 +80,66 @@ const initialize = () => {
             button.addEventListener('click', handleDecimalClick);
         } else if (button.id == 'btn-equal') {
             button.addEventListener('click', handleEqualClick);
+        }
+    })
+    document.addEventListener("keydown", (event) => {
+        if (event.defaultPrevented) {
+            return;
+          }
+        switch (event.key) {
+        case "1":
+            document.getElementsByClassName.contains('btn-one').click();
+            break;
+        case "2":
+            document.getElementsByClassName.contains('btn-two').click();
+            break;
+        case "3":
+            document.getElementsByClassName.contains('btn-three').click();
+            break;
+        case "4":
+            document.getElementsByClassName.contains('btn-four').click();
+            break;
+        case "5":
+            document.getElementsByClassName.contains('btn-five').click();
+            break;
+        case "6":
+            document.getElementsByClassName.contains('btn-six').click();
+            break;
+        case "7":
+            document.getElementsByClassName.contains('btn-seven').click();
+            break;
+        case "8":
+            document.getElementsByClassName.contains('btn-eight').click();
+            break;
+        case "9":
+            document.getElementsByClassName.contains('btn-nine').click();
+            break;
+        case "0":
+            document.getElementsByClassName.contains('btn-zero').click();
+            break;
+        case "Backspace":
+            document.getElementsByClassName.contains('backspace').click();
+            break;
+        case "Enter":
+            document.getElementsByClassName.contains('btn-equal').click();
+            break;
+        case ".":
+            document.getElementsByClassName.contains('decimal').click();
+            break;
+        case "/":
+            document.getElementsByClassName.contains('btn-divide').click();
+            break;
+        case "*":
+            document.getElementsByClassName.contains('btn-multiply').click();
+            break;
+        case "-":
+            document.getElementsByClassName.contains('btn-minus').click();
+            break;
+        case "+":
+            document.getElementsByClassName.contains('btn-plus').click();
+            break;
+        default:
+            return window.alert('Improper Key!');
         }
     })
 };
